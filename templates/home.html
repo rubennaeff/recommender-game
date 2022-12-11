@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% block content%}
+
+</body>
+
+<h5>Matching game</h5>
+<ul>
+  <li>There are three types of presents, and people like either one or two of them</li>
+  <li>Give people all their favorite presents, with as few mismatches as possible.</li>
+</ul>
+
+
+<div class="menu-container">
+	{% for user, user_feedback in feedback.items() %}
+		{% if loop.index0 == 0 %}
+			<div class="button-container">
+				<a class="button items users header"> </a>
+				{% for item_topic in item_topics %}
+					{% if won %}
+						<a class="button items users header">{{ item_topic }}</a>
+					{% else %}
+						<a class="button items users header">🎁</a>
+					{% endif %}
+				{% endfor %}
+			</div>    		
+		{% endif %}
+		<div class="button-container">
+			<a class="button items users header">👤</a>
+			{% for item, item_feedback in user_feedback.items() %}
+				<a href="/action/{{ user }}-{{ item }}" class="button items users">{{ item_feedback }}</a>
+			{% endfor %}
+			{% if won %}
+				<a class="button items users header">{{ user_interests[user] }}</a>
+			{% else %}
+				<a class="button items users header"> </a>
+			{% endif %}
+		</div>    		
+	{% endfor %}
+</div>
+
+<p></p>
+
+<p>
+	Score: {{ found }} / {{ found + harm }}
+	{% if found + harm > 0 %}
+		({{ 100 * found // (found + harm) }}%)
+	{% endif %}
+</p>
+<p>
+	{% if won %}
+		You found them all!
+		</p><p>
+		<a href="/reset" class="button">play again</a>
+	{% else %}
+		To be found: {{ total_score - found }} / {{ total_score }}
+		</p><p>
+		 <a href="/reset" >reset</a>
+	{% endif %}
+</p>
+
+
+
+</body>
+
+{% endblock %}

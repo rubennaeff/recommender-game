@@ -1,0 +1,42 @@
+
+
+
+.items {
+    width: 7%;  
+}
+
+.users {
+    height: 9%;
+}
+
+.header {
+  border: 0;  
+  font-size: 14pt;
+  font-weight: bolder;
+}
+
+.row {
+  font-weight: normal;
+}
+
+/*.noborder {
+  border: 0;
+}
+*/
+/*
+
+.button-container {
+    width: 520px;
+    background: gray;
+    overflow-y: auto;
+}
+
+.button-container > a {
+    width: 100px;
+    height: 100px;
+    float: left;
+    background: lightgray;   
+    margin: 15px;
+}
+
+*/
