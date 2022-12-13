@@ -3,12 +3,7 @@ from flask import Flask, render_template, escape, url_for, session
 import numpy as np
 
 app = Flask(__name__)
-
-# read secret code from local file
-with open('./config/signature.txt') as f:
-    lines = f.readlines()
-    app.secret_key = "".join(lines)
-    print("Success:", app.secret_key[-4:])
+app.secret_key = "34447154-463f-464f-ad95-1b090d9bc1b3"
 
 # constants
 POSITIVE = '✔️'
