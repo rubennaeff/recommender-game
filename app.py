@@ -10,10 +10,6 @@ POSITIVE = '✔️'
 NEGATIVE = '❌'
 UNKNOWN = '_'
 INTERESTS = "📚🎵⚽🍻💃🤺🥊🎭"
-# POSITIVE = '+'
-# NEGATIVE = '-'
-# UNKNOWN = '.'
-# INTERESTS = "123456789"
 nice_output = {'0': NEGATIVE, '1': POSITIVE, UNKNOWN: UNKNOWN}
 
 # config
@@ -59,12 +55,11 @@ def reset():
 def index(): 
     if not 'score_found' in session:
         reset()
-    greetings = "Hello World"
     nice_feedback = {
         user: {item: nice_output[str(item_feedback)] for item, item_feedback in user_feedback.items()} 
                for user, user_feedback in session['feedback'].items()}
     return render_template(
-        "home.html", greetings=greetings, feedback=nice_feedback, n_users=n_users, n_items=n_items, 
+        "home.html", feedback=nice_feedback, n_users=n_users, n_items=n_items, 
         item_topics=session['item_topics'], user_interests=session['user_interests'], won=session['score_found'] == session['total_score'],
         found=session['score_found'], harm=session['score_misses'], total_score=session['total_score'])
 
@@ -72,7 +67,6 @@ def index():
 def action(rec):
     try:    
         u, i = rec.split('-')
-        u, i = str(u), str(i)
     except:
         raise ValueError("Fix this please")
     if session['feedback'][u][i] == UNKNOWN:
